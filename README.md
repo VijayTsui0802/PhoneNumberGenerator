@@ -1,2 +1,1 @@
-测试变化
-1234
+python manage.py runserver
