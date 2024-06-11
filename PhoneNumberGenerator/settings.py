@@ -18,11 +18,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'app',
+    'corsheaders',  # 确保这个行在最后
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # 确保这个行在这里
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -83,9 +85,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # Celery settings
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
@@ -95,9 +95,10 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
+# CORS settings
+CORS_ORIGIN_ALLOW_ALL = True  # 或者设置具体允许的域
 
-# settings.py
-
+# Logging settings
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
